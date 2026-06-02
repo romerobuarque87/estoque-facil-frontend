@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estoque Fácil</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1>Estoque Fácil</h1>
+      <p>Sistema front-end para controle de produtos em estoque</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="cards-resumo">
+      <div class="card"><span>Total de Produtos</span><strong id="totalProdutos">0</strong></div>
+      <div class="card"><span>Itens em Estoque</span><strong id="totalItens">0</strong></div>
+      <div class="card"><span>Valor Total</span><strong id="valorTotal">R$ 0,00</strong></div>
+      <div class="card alerta"><span>Estoque Baixo</span><strong id="estoqueBaixo">0</strong></div>
+    </section>
+
+    <section class="painel">
+      <div class="formulario">
+        <h2 id="tituloFormulario">Cadastrar Produto</h2>
+        <form id="formProduto">
+          <input type="hidden" id="produtoId" />
+
+          <label for="nome">Nome do produto</label>
+          <input type="text" id="nome" placeholder="Ex.: Arroz" required />
+
+          <label for="codigo">Código (SKU)</label>
+          <input type="text" id="codigo" placeholder="Gerado automaticamente" readonly />
+
+          <label for="categoria">Categoria</label>
+          <select id="categoria" required>
+            <option value="">Selecione</option>
+            <option>Alimentos</option>
+            <option>Bebidas</option>
+            <option>Limpeza</option>
+            <option>Higiene</option>
+            <option>Eletrônicos</option>
+            <option>Outros</option>
+          </select>
+
+          <div class="linha">
+            <div>
+              <label for="quantidade">Quantidade</label>
+              <input type="number" id="quantidade" min="0" required />
+            </div>
+            <div>
+              <label for="precoCusto">Preço de custo</label>
+              <input type="number" id="precoCusto" min="0" step="0.01" required />
+            </div>
+          </div>
+
+          <div class="linha">
+            <div>
+              <label for="margem">Margem (%)</label>
+              <input type="number" id="margem" min="0" max="99.9" step="0.1" placeholder="Ex.: 30" />
+            </div>
+            <div>
+              <label for="precoVenda">Preço de venda</label>
+              <input type="number" id="precoVenda" min="0" step="0.01" required />
+            </div>
+          </div>
+
+          <label for="dataCadastro">Data de cadastro</label>
+          <input type="date" id="dataCadastro" required />
+
+          <div class="botoes">
+            <button type="submit" class="btn principal">Salvar</button>
+            <button type="button" class="btn secundario" id="btnLimpar">Limpar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="listagem">
+        <div class="cabecalho-lista">
+          <h2>Produtos Cadastrados</h2>
+          <div class="acoes-lista">
+            <input type="search" id="pesquisa" placeholder="Pesquisar por nome ou código" />
+            <button type="button" class="btn-historico" id="btnHistorico">Histórico de saídas</button>
+          </div>
+        </div>
+
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Código</th>
+                <th>Categoria</th>
+                <th>Qtd.</th>
+                <th>Custo</th>
+                <th>Venda</th>
+                <th>Margem</th>
+                <th>Total</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaProdutos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Projeto 3AV - Linguagem de Programação Web</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
